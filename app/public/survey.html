@@ -10,7 +10,8 @@
 </head>
 <body>
   <div class="row">
-    <div class="col s12 m12">
+    <div class="col md2"></div>
+    <div class="col s12 m8">
       <div class="card amber lighten-3">
         <div class="card-content">
           <span class="card-title">Friend Finder</span>
@@ -20,20 +21,20 @@
               <div class="row">
                 <h5>About You</h5>
                 <div class="input-field col s12 m8">
-                  <input id="name" type="text" class="validate">
+                  <input id="name" type="text" class="validate" required="required">
                   <label for="name">Name</label>
                 </div>
               </div>
               <div class="row">
                 <div class="input-field col s12 m8">
-                  <input id="photo-link" type="text">
+                  <input id="photo-link" type="text" required="required">
                   <label for="photo-link">Link to Photo Image</label>
                 </div>
               </div>
             </form>
             <div class="input-field col s12 m8">
               <p>I would rather climb a mountain than hang out at the beach.</p>
-              <select id="q1" >
+              <select id="q1" required="required">
                 <option value="" disabled selected>Choose your option</option>
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
@@ -45,7 +46,7 @@
             </div>
             <div class="input-field col s12 m8">
               <p>My ideal Saturday morning is having breakfast in bed.</p>
-              <select id="q2">
+              <select id="q2" required="required">
                 <option value="" disabled selected>Choose your option</option>
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
@@ -57,7 +58,7 @@
             </div>
             <div class="input-field col s12 m8">
               <p>I feel energized when in a large group of people.</p>
-              <select id="q3">
+              <select id="q3" required="required">
                 <option value="" disabled selected>Choose your option</option>
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
@@ -69,7 +70,7 @@
             </div>
             <div class="input-field col s12 m8">
               <p>I try to listen to others' ideas before passing judgement.</p>
-              <select id="q4">
+              <select id="q4" required="required">
                 <option value="" disabled selected>Choose your option</option>
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
@@ -81,7 +82,7 @@
             </div>
             <div class="input-field col s12 m8">
               <p>I am very competitive.</p>
-              <select id="q5">
+              <select id="q5" required="required">
                 <option value="" disabled selected>Choose your option</option>
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
@@ -93,7 +94,7 @@
             </div>
             <div class="input-field col s12 m8">
               <p>I am an organized person.</p>
-              <select id="q6">
+              <select id="q6" required="required">
                 <option value="" disabled selected>Choose your option</option>
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
@@ -105,7 +106,7 @@
             </div>
             <div class="input-field col s12 m8">
               <p>I do not like to ask for help.</p>
-              <select id="q7">
+              <select id="q7" required="required">
                 <option value="" disabled selected>Choose your option</option>
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
@@ -117,7 +118,7 @@
             </div>
             <div class="input-field col s12 m8">
               <p>I like to spend time outside.</p>
-              <select id="q8">
+              <select id="q8" required="required">
                 <option value="" disabled selected>Choose your option</option>
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
@@ -129,7 +130,7 @@
             </div>
             <div class="input-field col s12 m8">
               <p>I like to play board games.</p>
-              <select id="q9">
+              <select id="q9" required="required">
                 <option value="" disabled selected>Choose your option</option>
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
@@ -141,7 +142,7 @@
             </div>
             <div class="input-field col s12 m8">
               <p>I believe I can always improve at something.</p>
-              <select id="q10">
+              <select id="q10" required="required">
                 <option value="" disabled selected>Choose your option</option>
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
@@ -163,12 +164,13 @@
               <!-- <p>A bunch of text</p> -->
             </div>
             <div class="modal-footer">
-              <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+              <a href="#!" class="modal-close waves-effect waves-green btn-flat validate">Close</a>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <div class="col md2"></div>
   </div>
      
   <!-- Compiled and minified JavaScript -->
