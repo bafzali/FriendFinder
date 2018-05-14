@@ -44,7 +44,7 @@
               <label for="q1">Question 1</label>
             </div>
             <div class="input-field col s12 m8">
-              <p>I would rather climb a mountain than hang out at the beach.</p>
+              <p>My ideal Saturday morning is having breakfast in bed.</p>
               <select id="q2">
                 <option value="" disabled selected>Choose your option</option>
                 <option value="1">1 (Strongly Disagree)</option>
@@ -56,7 +56,7 @@
               <label for="q2">Question 2</label>
             </div>
             <div class="input-field col s12 m8">
-              <p>I would rather climb a mountain than hang out at the beach.</p>
+              <p>I feel energized when in a large group of people.</p>
               <select id="q3">
                 <option value="" disabled selected>Choose your option</option>
                 <option value="1">1 (Strongly Disagree)</option>
@@ -68,7 +68,7 @@
               <label for="q3">Question 3</label>
             </div>
             <div class="input-field col s12 m8">
-              <p>I would rather climb a mountain than hang out at the beach.</p>
+              <p>I try to listen to others' ideas before passing judgement.</p>
               <select id="q4">
                 <option value="" disabled selected>Choose your option</option>
                 <option value="1">1 (Strongly Disagree)</option>
@@ -80,7 +80,7 @@
               <label for="q4">Question 4</label>
             </div>
             <div class="input-field col s12 m8">
-              <p>I would rather climb a mountain than hang out at the beach.</p>
+              <p>I am very competitive.</p>
               <select id="q5">
                 <option value="" disabled selected>Choose your option</option>
                 <option value="1">1 (Strongly Disagree)</option>
@@ -92,7 +92,7 @@
               <label for="q5">Question 5</label>
             </div>
             <div class="input-field col s12 m8">
-              <p>I would rather climb a mountain than hang out at the beach.</p>
+              <p>I am an organized person.</p>
               <select id="q6">
                 <option value="" disabled selected>Choose your option</option>
                 <option value="1">1 (Strongly Disagree)</option>
@@ -104,7 +104,7 @@
               <label for="q6">Question 6</label>
             </div>
             <div class="input-field col s12 m8">
-              <p>I would rather climb a mountain than hang out at the beach.</p>
+              <p>I do not like to ask for help.</p>
               <select id="q7">
                 <option value="" disabled selected>Choose your option</option>
                 <option value="1">1 (Strongly Disagree)</option>
@@ -116,7 +116,7 @@
               <label for="q7">Question 7</label>
             </div>
             <div class="input-field col s12 m8">
-              <p>I would rather climb a mountain than hang out at the beach.</p>
+              <p>I like to spend time outside.</p>
               <select id="q8">
                 <option value="" disabled selected>Choose your option</option>
                 <option value="1">1 (Strongly Disagree)</option>
@@ -128,7 +128,7 @@
               <label for="q8">Question 8</label>
             </div>
             <div class="input-field col s12 m8">
-              <p>I would rather climb a mountain than hang out at the beach.</p>
+              <p>I like to play board games.</p>
               <select id="q9">
                 <option value="" disabled selected>Choose your option</option>
                 <option value="1">1 (Strongly Disagree)</option>
@@ -140,7 +140,7 @@
               <label for="q9">Question 9</label>
             </div>
             <div class="input-field col s12 m8">
-              <p>I would rather climb a mountain than hang out at the beach.</p>
+              <p>I believe I can always improve at something.</p>
               <select id="q10">
                 <option value="" disabled selected>Choose your option</option>
                 <option value="1">1 (Strongly Disagree)</option>
@@ -152,7 +152,18 @@
               <label for="q10">Question 10</label>
             </div>
           </div>
-          <button class="btn waves-effect waves-light" type="submit" name="action" id="submit">Submit</button>
+          <button class="btn waves-effect waves-light modal-trigger" type="submit" name="action" id="submit" href="#modal">Submit</button>
+          <!-- Modal Structure -->
+          <div id="modal1" class="modal">
+            <div class="modal-content">
+              <h4>Your friend match is...</h4>
+              <div id="friend-match"></div>
+              <!-- <p>A bunch of text</p> -->
+            </div>
+            <div class="modal-footer">
+              <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -169,6 +180,10 @@
       $('select').formSelect();
     });
 
+    $(document).ready(function(){
+      $('.modal').modal();
+    });
+
     // handle how form data is sent to the server
     $('#submit').on('click', (event) => {
       event.preventDefault();
@@ -178,10 +193,59 @@
         userName: $('#name').val().trim(),
         photoLink: $('#photo-link').val().trim(),
         qAnswerArray: [$('#q1').val(), $('#q2').val(), $('#q3').val(), $('#q4').val(), $('#q5').val(), $('#q6').val(), $('#q7').val(), $('#q8').val(), $('#q9').val(), $('#q10').val()],
-      }
+        match: 'false',
+      };
 
       console.log(newUser);
-      
+
+      function displayFriendMatch() {
+        const currentURL = window.location.origin;
+
+        $.ajax({ url: currentURL + '/api/friends', method: 'GET' }).then(function(friendsData) {
+          console.log("=====================");
+          console.log("URL: " + currentURL + "/api/friends");
+          console.log("=====================");
+
+          // console.log(JSON.parse(friendsData));
+          // let friendsArray = JSON.parse(friendsData);
+          console.log(friendsData[0].match);
+          
+          console.log("=====================");
+          for (let i = 0; i < friendsData.length; i++) {
+            if (friendsData[i].match == true) {
+              console.log(friendsData[i].userName);
+              // $('#friend-match').append(friendsData[i].userName)
+            } else {
+              console.log("Error. There are no friend matches.");
+            }
+          }
+          
+        });
+      }
+
+      displayFriendMatch();
+
+      $.post('/api/friends', newUser, (data) => {
+        // callback to display modal when values are compared??
+        // if (data) {
+        //   console.log(data);
+        // }
+        // // Clear the form when submitting
+        // $("#name").val("");
+        // $("#photo-link").val("");
+        // $("#q1").val("");
+        // $("#q2").val("");
+        // $("#q3").val("");
+        // $("#q4").val("");
+        // $("#q5").val("");
+        // $("#q6").val("");
+        // $("#q7").val("");
+        // $("#q8").val("");
+        // $("#q9").val("");
+        // $("#q10").val("");
+
+      });
+          
     });
 
   </script>
