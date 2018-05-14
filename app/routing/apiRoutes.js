@@ -58,9 +58,10 @@ module.exports = (app) => {
     }
 
     friendMatch.match = 'true';
+    // console.log(friendMatch.match);
 
     friendsData.push(newFriend);
-
+    // console.log(friendsData);
     res.json(friendsData);
     // console.log(req.body);
   });

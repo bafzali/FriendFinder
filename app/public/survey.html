@@ -152,12 +152,14 @@
               <label for="q10">Question 10</label>
             </div>
           </div>
-          <button class="btn waves-effect waves-light modal-trigger" type="submit" name="action" id="submit" href="#modal">Submit</button>
+          <button class="btn waves-effect waves-light modal-trigger" type="submit" name="action" id="submit" href="#modal1">Submit</button>
           <!-- Modal Structure -->
           <div id="modal1" class="modal">
             <div class="modal-content">
-              <h4>Your friend match is...</h4>
-              <div id="friend-match"></div>
+              <h4>Your friend match is <span id="friend-name"></span>!</h4>
+              <div id="friend-img">
+
+              </div>
               <!-- <p>A bunch of text</p> -->
             </div>
             <div class="modal-footer">
@@ -204,45 +206,43 @@
         $.ajax({ url: currentURL + '/api/friends', method: 'GET' }).then(function(friendsData) {
           console.log("=====================");
           console.log("URL: " + currentURL + "/api/friends");
-          console.log("=====================");
-
-          // console.log(JSON.parse(friendsData));
-          // let friendsArray = JSON.parse(friendsData);
-          console.log(friendsData[0].match);
           
-          console.log("=====================");
           for (let i = 0; i < friendsData.length; i++) {
-            if (friendsData[i].match == true) {
+            console.log(friendsData[i].match);
+            console.log("======== before if statement =============");
+            if (friendsData[i].match == "true") {
+              let matchImage = $('<img>');
+              matchImage.attr('src', friendsData[i].photoLink);
+              $('#friend-name').html(friendsData[i].userName); 
               console.log(friendsData[i].userName);
-              // $('#friend-match').append(friendsData[i].userName)
-            } else {
-              console.log("Error. There are no friend matches.");
-            }
+              $('#friend-img').html(matchImage);
+              console.log(matchImage);
+            } 
+            console.log("================ after if statement ====================");
           }
+          
           
         });
       }
-
-      displayFriendMatch();
-
+      
+      
       $.post('/api/friends', newUser, (data) => {
-        // callback to display modal when values are compared??
-        // if (data) {
-        //   console.log(data);
-        // }
-        // // Clear the form when submitting
-        // $("#name").val("");
-        // $("#photo-link").val("");
-        // $("#q1").val("");
-        // $("#q2").val("");
-        // $("#q3").val("");
-        // $("#q4").val("");
-        // $("#q5").val("");
-        // $("#q6").val("");
-        // $("#q7").val("");
-        // $("#q8").val("");
-        // $("#q9").val("");
-        // $("#q10").val("");
+        // callback to display friend data
+        displayFriendMatch();
+
+        // Clear the form when submitting
+        $("#name").val("");
+        $("#photo-link").val("");
+        $("#q1").val("");
+        $("#q2").val("");
+        $("#q3").val("");
+        $("#q4").val("");
+        $("#q5").val("");
+        $("#q6").val("");
+        $("#q7").val("");
+        $("#q8").val("");
+        $("#q9").val("");
+        $("#q10").val("");
 
       });
           
